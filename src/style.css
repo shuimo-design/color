@@ -1,0 +1,47 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+html[dark] {
+  color: white;
+}
+
+:root {
+}
+
+.header {
+  display: inline-flex;
+  box-sizing: border-box;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  padding: 0 2rem;
+  width: 100vw;
+  height: 8rem;
+}
+
+.solar-switcher {
+  font-size: 1.8rem;
+  margin-right: 4rem;
+}
+
+.full-screen {
+  --m-rp-w: 100vw;
+  --m-rp-h: 100vh;
+}
+
+
+.color-list {
+  height: calc(100vh - 8rem);
+  overflow-y: auto;
+}
+
