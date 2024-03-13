@@ -11,12 +11,17 @@ body {
   font-size: 1.6rem;
 }
 
-html[dark] {
-  color: white;
+:root {
+  --header-h: 8rem;
+  --header-color:#d7e1e1;
 }
 
-:root {
+html[dark] {
+  color: white;
+  --header-color:#333333;
 }
+
+
 
 .header {
   display: inline-flex;
@@ -26,7 +31,15 @@ html[dark] {
   align-items: center;
   padding: 0 2rem;
   width: 100vw;
-  height: 8rem;
+  height: var(--header-h);
+  position: absolute;
+  z-index: 9999;
+  background: linear-gradient(to bottom, var(--header-color) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.header-placeholder{
+  height: var(--header-h);
+  width: 100vw;
 }
 
 .solar-switcher {
@@ -41,7 +54,11 @@ html[dark] {
 
 
 .color-list {
-  height: calc(100vh - 8rem);
+  height: 100vh;
   overflow-y: auto;
 }
 
+.bottom-placeholder{
+  height: 4rem;
+  width: 100vw;
+}

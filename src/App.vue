@@ -45,7 +45,6 @@ const colorList = Object.values(colors).flat().sort((a, b) => {
   const hslB = rgbToHsl(hexToRgb(b.color));
   return hslA.h - hslB.h;
 });
-// 对颜色列表进行排序
 
 
 const isSolar = ref(false);
@@ -59,6 +58,7 @@ const isSolar = ref(false);
       <m-dark-mode/>
     </div>
     <div class="color-list">
+      <div class="header-placeholder"/>
 
       <div class="solar-block" v-for="solar in Object.keys(colors)" v-if="isSolar">
         <h1>{{solar}}</h1>
@@ -70,7 +70,7 @@ const isSolar = ref(false);
         <ColorItem :info="info" v-for="info in colorList"/>
       </div>
 
-
+      <div class="bottom-placeholder"/>
     </div>
   </m-rice-paper>
 </template>
