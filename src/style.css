@@ -62,3 +62,27 @@ html[dark] {
   height: 4rem;
   width: 100vw;
 }
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .color-item{
+    margin-bottom: 0.8rem;
+
+    &:hover {
+      animation: shake 0.3s;
+      animation-iteration-count: 1;
+    }
+  }
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-2deg); }
+  40% { transform: rotate(2deg); }
+  60% { transform: rotate(-5deg); }
+  80% { transform: rotate(3deg); }
+  100% { transform: rotate(0deg); }
+}

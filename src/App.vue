@@ -77,11 +77,7 @@ const isSolar = ref(false);
 
 <style scoped>
 
-.colors {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
+
 
 .solar-block {
   margin-bottom: 10px;
