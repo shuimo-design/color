@@ -14,14 +14,13 @@ body {
 
 :root {
   --header-h: 8rem;
-  --header-color:#d7e1e1;
+  --header-color: #d7e1e1;
 }
 
 html[dark] {
   color: white;
-  --header-color:#333333;
+  --header-color: #333333;
 }
-
 
 
 .header {
@@ -38,7 +37,17 @@ html[dark] {
   background: linear-gradient(to bottom, var(--header-color) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
-.header-placeholder{
+.selector {
+  display: flex;
+  margin-right: 4rem;
+}
+
+.selector-sort {
+  display: flex;
+  margin-right: 5rem;
+}
+
+.header-placeholder {
   height: var(--header-h);
   width: 100vw;
 }
@@ -59,7 +68,7 @@ html[dark] {
   overflow-y: auto;
 }
 
-.bottom-placeholder{
+.bottom-placeholder {
   height: 4rem;
   width: 100vw;
 }
@@ -69,7 +78,7 @@ html[dark] {
   flex-wrap: wrap;
   justify-content: space-around;
 
-  .color-item{
+  .color-item {
     margin-bottom: 0.8rem;
 
     &:hover {
@@ -80,10 +89,22 @@ html[dark] {
 }
 
 @keyframes shake {
-  0% { transform: rotate(0deg); }
-  20% { transform: rotate(-2deg); }
-  40% { transform: rotate(2deg); }
-  60% { transform: rotate(-5deg); }
-  80% { transform: rotate(3deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-2deg);
+  }
+  40% {
+    transform: rotate(2deg);
+  }
+  60% {
+    transform: rotate(-5deg);
+  }
+  80% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }

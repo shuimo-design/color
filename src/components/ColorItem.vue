@@ -7,24 +7,24 @@
  *
  * 江湖的业务千篇一律，复杂的代码好几百行。
  */
-import { computed } from 'vue';
+import { computed, inject, ref } from 'vue';
 import { MMessage } from 'shuimo-ui';
+import { COLOR_TYPE } from '../compositions/useColors.ts';
+import { hevToHSVStr } from '../plugins/transform/hex.hsv.ts';
+import { hexToRGB, hexToRGBStr } from '../plugins/transform/hex.rgb.ts';
+import { hexToHSLStr } from '../plugins/transform/hex.hsl.ts';
 
 const props = defineProps<{ info: { color: string, name: string } }>();
 const fill = computed(() => props.info.color);
 
 const deepColorCheck = (hexColor: string) => {
-  // 将十六进制颜色转换为RGB值
-  let r = parseInt(hexColor.substr(1, 2), 16);
-  let g = parseInt(hexColor.substr(3, 2), 16);
-  let b = parseInt(hexColor.substr(5, 2), 16);
-
+  let { r, g, b } = hexToRGB(hexColor);
   //  判断是深色还是浅色
   return (r * 0.299 + g * 0.587 + b * 0.114) > 186;
 };
-const isDeepColor = deepColorCheck(props.info.color);
-const fontColor = computed(() => isDeepColor ? '#31322C' : '#EBEEE8');
-const fontHoverColor = computed(() => isDeepColor ? '#151D29' : '#F5F3F2');
+const isDeepColor = computed(() => deepColorCheck(props.info.color));
+const fontColor = computed(() => isDeepColor.value ? '#31322C' : '#EBEEE8');
+const fontHoverColor = computed(() => isDeepColor.value ? '#151D29' : '#F5F3F2');
 
 const copyInfo = (color: string, type: string) => {
   const input = document.createElement('input');
@@ -39,17 +39,33 @@ const copyInfo = (color: string, type: string) => {
   });
 };
 
+const colorType = inject('colorType', ref(COLOR_TYPE.HEX));
+const colorTransform = (color: string) => {
+  switch (colorType.value) {
+    case COLOR_TYPE.HSV:
+      return hevToHSVStr(color);
+    case COLOR_TYPE.RGB:
+      return hexToRGBStr(color);
+    case COLOR_TYPE.HSL:
+      return hexToHSLStr(color);
+    default:
+      return color;
+  }
+};
 </script>
 
 <template>
   <div class="color-item">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300.09 80.79" class="color-item-svg-svg">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" class="color-item-svg-svg">
       <use xlink:href="/color-item.svg#color-item"/>
     </svg>
 
     <div class="color-item-inner">
       <span class="m-cursor-pointer" @click="copyInfo(info.name,`颜色名称【${info.name}】`)">{{ info.name }}</span>
-      <span class="inner-color m-cursor-pointer" @click="copyInfo(info.color,`颜色【${info.color}】`)">{{ info.color }}</span>
+      <span class="inner-color m-cursor-pointer"
+            @click="copyInfo(colorTransform(info.color),`颜色【${colorTransform(info.color)}】`)">
+        {{ colorTransform(info.color) }}
+      </span>
     </div>
 
   </div>
@@ -59,8 +75,7 @@ const copyInfo = (color: string, type: string) => {
 
 .color-item {
   height: 8rem;
-  /* 比例 1508：406 */
-  aspect-ratio: 1508 / 406;
+  aspect-ratio: 15 / 4;
   fill: v-bind(fill);
   position: relative;
 }

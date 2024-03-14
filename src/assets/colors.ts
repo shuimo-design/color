@@ -7,8 +7,12 @@
  * 江湖的业务千篇一律，复杂的代码好几百行。
  */
 
+export type ColorType = {
+  color: string;
+  name: string;
+};
 
-export const colors = {
+export const colors: Record<string, ColorType[]> = {
   '立秋': [
     { color: '#88ABDA', name: '窃蓝' },
     { color: '#6F94CD', name: '监德' },
@@ -25,7 +29,7 @@ export const colors = {
     { color: '#C0D09D', name: '麹尘' },
     { color: '#938F4C', name: '绿沈' },
     { color: '#7F754C', name: '绞衣' },
-    { color: '#595333', name: '素綦' }
+    { color: '#595333', name: '素綦' },
   ],
   '芒种': [
     { color: '#D5D1AE', name: '筠雾' },
@@ -43,7 +47,7 @@ export const colors = {
     { color: '#535164', name: '曾青' },
     { color: '#454659', name: '䒌靘' },
     { color: '#343041', name: '璆琳' },
-    { color: '#1E2732', name: '瑾瑜' }
+    { color: '#1E2732', name: '瑾瑜' },
   ],
   '大雪': [
     { color: '#EFC4CE', name: '粉米' },
@@ -61,7 +65,7 @@ export const colors = {
     { color: '#A4ABD6', name: '暮山紫' },
     { color: '#757CBB', name: '紫苑' },
     { color: '#615EA8', name: '优昙瑞' },
-    { color: '#4A4B9D', name: '延维' }
+    { color: '#4A4B9D', name: '延维' },
   ],
   '清明': [
     { color: '#A6559D', name: '紫蒲' },
@@ -79,7 +83,7 @@ export const colors = {
     { color: '#CB5C83', name: '琅玕紫' },
     { color: '#B83570', name: '红踯躅' },
     { color: '#A73766', name: '魏红' },
-    { color: '#903754', name: '魏紫' }
+    { color: '#903754', name: '魏紫' },
   ],
   '寒露': [
     { color: '#A6BAB1', name: '醽醁' },
@@ -97,7 +101,7 @@ export const colors = {
     { color: '#ECD9C7', name: '弗肯红' },
     { color: '#E1C199', name: '赤璋' },
     { color: '#C6A268', name: '茧色' },
-    { color: '#B3934B', name: '密陀僧' }
+    { color: '#B3934B', name: '密陀僧' },
   ],
   '小暑': [
     { color: '#F5B087', name: '骍刚' },
@@ -115,7 +119,7 @@ export const colors = {
     { color: '#106898', name: '柔蓝' },
     { color: '#12507B', name: '碧城' },
     { color: '#06436F', name: '蓝采和' },
-    { color: '#003460', name: '帝释青' }
+    { color: '#003460', name: '帝释青' },
   ],
   '小寒': [
     { color: '#F6F9E4', name: '酂白' },
@@ -133,7 +137,7 @@ export const colors = {
     { color: '#A4C9CC', name: '井天' },
     { color: '#6CA8AF', name: '正青' },
     { color: '#509296', name: '扁青' },
-    { color: '#226B68', name: '䌦色' }
+    { color: '#226B68', name: '䌦色' },
   ],
   '春分': [
     { color: '#EBEEE8', name: '皦玉' },
@@ -151,7 +155,7 @@ export const colors = {
     { color: '#3271AE', name: '青冥' },
     { color: '#007175', name: '青雘' },
     { color: '#284852', name: '青緺' },
-    { color: '#12264F', name: '骐驎' }
+    { color: '#12264F', name: '骐驎' },
   ],
   '立冬': [
     { color: '#FFFBC7', name: '半见' },
@@ -169,7 +173,7 @@ export const colors = {
     { color: '#A88787', name: '藕丝褐' },
     { color: '#9E696D', name: '葡萄褐' },
     { color: '#81474C', name: '苏方' },
-    { color: '#662B2F', name: '福色' }
+    { color: '#662B2F', name: '福色' },
   ],
   '夏至': [
     { color: '#CB523E', name: '赩炽' },
@@ -187,7 +191,7 @@ export const colors = {
     { color: '#F5F3F2', name: '山矾' },
     { color: '#EAE5E3', name: '玉頩' },
     { color: '#DFE0D9', name: '二目鱼' },
-    { color: '#D4D3CA', name: '明月珰' }
+    { color: '#D4D3CA', name: '明月珰' },
   ],
   '冬至': [
     { color: '#E7CAD3', name: '银红' },
@@ -205,7 +209,7 @@ export const colors = {
     { color: '#796860', name: '濯绛' },
     { color: '#585248', name: '墨黪' },
     { color: '#46433B', name: '驖骊' },
-    { color: '#31322C', name: '京元' }
+    { color: '#31322C', name: '京元' },
   ],
   '立夏': [
     { color: '#C3D94E', name: '青粲' },
@@ -223,7 +227,7 @@ export const colors = {
     { color: '#F29A76', name: '朱颜酡' },
     { color: '#ED6D3D', name: '苕荣' },
     { color: '#E94829', name: '檎丹' },
-    { color: '#E60012', name: '丹罽' }
+    { color: '#E60012', name: '丹罽' },
   ],
   '谷雨': [
     { color: '#DCC7E1', name: '昌荣' },
@@ -241,7 +245,7 @@ export const colors = {
     { color: '#BD8253', name: '露褐' },
     { color: '#945635', name: '檀褐' },
     { color: '#804C2E', name: '緅絺' },
-    { color: '#5B3222', name: '目童子' }
+    { color: '#5B3222', name: '目童子' },
   ],
   '霜降': [
     { color: '#D12920', name: '银朱' },
@@ -259,7 +263,7 @@ export const colors = {
     { color: '#DFD7C2', name: '蜜合' },
     { color: '#D4C1A6', name: '假山南' },
     { color: '#BEA78B', name: '紫花布' },
-    { color: '#99806C', name: '沉香' }
+    { color: '#99806C', name: '沉香' },
   ],
   '大暑': [
     { color: '#E3ADB9', name: '夕岚' },
@@ -277,7 +281,7 @@ export const colors = {
     { color: '#BED2BB', name: '山岚' },
     { color: '#9BB496', name: '渌波' },
     { color: '#81A380', name: '青楸' },
-    { color: '#698E6A', name: '菉竹' }
+    { color: '#698E6A', name: '菉竹' },
   ],
   '大寒': [
     { color: '#995D7F', name: '紫府' },
@@ -295,7 +299,7 @@ export const colors = {
     { color: '#C8B6BB', name: '石英' },
     { color: '#9C8D9B', name: '银褐' },
     { color: '#9D858F', name: '烟红' },
-    { color: '#76555D', name: '紫诰' }
+    { color: '#76555D', name: '紫诰' },
   ],
   '秋分': [
     { color: '#D5E3D4', name: '卵色' },
@@ -313,7 +317,7 @@ export const colors = {
     { color: '#EAEEF1', name: '浅云' },
     { color: '#D4DDE1', name: '素采' },
     { color: '#BDCBD2', name: '影青' },
-    { color: '#B2BFC3', name: '逍遥游' }
+    { color: '#B2BFC3', name: '逍遥游' },
   ],
   '雨水': [
     { color: '#F9D3E3', name: '盈盈' },
@@ -331,7 +335,7 @@ export const colors = {
     { color: '#C0D695', name: '欧碧' },
     { color: '#A9BE7B', name: '春辰' },
     { color: '#779649', name: '碧山' },
-    { color: '#4F6F46', name: '青青' }
+    { color: '#4F6F46', name: '青青' },
   ],
   '处暑': [
     { color: '#F0CFE3', name: '退红' },
@@ -349,7 +353,7 @@ export const colors = {
     { color: '#EAD89A', name: '桑蕾' },
     { color: '#D5B45C', name: '太一余粮' },
     { color: '#BF9C46', name: '秋香' },
-    { color: '#AA8534', name: '老茯神' }
+    { color: '#AA8534', name: '老茯神' },
   ],
   '小满': [
     { color: '#E2A2AC', name: '彤管' },
@@ -367,7 +371,7 @@ export const colors = {
     { color: '#F2C867', name: '嫩鹅黄' },
     { color: '#D3A237', name: '鞠衣' },
     { color: '#D08635', name: '郁金裙' },
-    { color: '#9F6027', name: '黄流' }
+    { color: '#9F6027', name: '黄流' },
   ],
   '小雪': [
     { color: '#DE82A7', name: '龙膏烛' },
@@ -385,7 +389,7 @@ export const colors = {
     { color: '#9E8368', name: '明茶褐' },
     { color: '#906C4A', name: '荆褐' },
     { color: '#7C5B3E', name: '驼褐' },
-    { color: '#72453A', name: '椒褐' }
+    { color: '#72453A', name: '椒褐' },
   ],
   '惊蛰': [
     { color: '#BA5B49', name: '赤缇' },
@@ -403,7 +407,7 @@ export const colors = {
     { color: '#9AA7B1', name: '青鸾' },
     { color: '#6B798E', name: '菘蓝' },
     { color: '#45465E', name: '青黛' },
-    { color: '#2C2F3B', name: '绀蝶' }
+    { color: '#2C2F3B', name: '绀蝶' },
   ],
   '白露': [
     { color: '#F5F2E9', name: '凝脂' },
@@ -421,7 +425,7 @@ export const colors = {
     { color: '#C4B798', name: '黄粱' },
     { color: '#A58A5F', name: '蒸栗' },
     { color: '#7C623F', name: '射干' },
-    { color: '#644D31', name: '油葫芦' }
+    { color: '#644D31', name: '油葫芦' },
   ],
   '立春': [
     { color: '#FFF799', name: '黄白游' },
@@ -439,7 +443,7 @@ export const colors = {
     { color: '#F3A694', name: '海天霞' },
     { color: '#EE7959', name: '缙云' },
     { color: '#BA5140', name: '纁黄' },
-    { color: '#C12C1F', name: '珊瑚赫' }
-  ]
-}
+    { color: '#C12C1F', name: '珊瑚赫' },
+  ],
+};
 

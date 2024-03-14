@@ -1,74 +1,70 @@
 <script setup lang="ts">
 
 import ColorItem from './components/ColorItem.vue';
-import { colors } from './compositions/colors.ts';
-import { ref } from 'vue';
-
-// 将RGB颜色转换为HSL颜色
-function rgbToHsl({ r, g, b }: { r: number, g: number, b: number }) {
-  r /= 255, g /= 255, b /= 255;
-  const max = Math.max(r, g, b), min = Math.min(r, g, b);
-  let h: number = 0, s: number, l = (max + min) / 2;
-
-  if (max === min) {
-    h = s = 0; // achromatic
-  } else {
-    const d = max - min;
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-    switch (max) {
-      case r:
-        h = (g - b) / d + (g < b ? 6 : 0);
-        break;
-      case g:
-        h = (b - r) / d + 2;
-        break;
-      case b:
-        h = (r - g) / d + 4;
-        break;
-    }
-    h /= 6;
-  }
-
-  return { h: h * 360, s, l };
-}
-
-function hexToRgb(hexColor: string) {
-  const r = parseInt(hexColor.substring(1, 3), 16);
-  const g = parseInt(hexColor.substring(3, 5), 16);
-  const b = parseInt(hexColor.substring(5, 7), 16);
-  return { r, g, b };
-}
-
-// 对颜色列表进行排序
-const colorList = Object.values(colors).flat().sort((a, b) => {
-  const hslA = rgbToHsl(hexToRgb(a.color));
-  const hslB = rgbToHsl(hexToRgb(b.color));
-  return hslA.h - hslB.h;
-});
+// import { ref } from 'vue';
+import useColors, { COLOR_TYPE, SORT_TYPE } from './compositions/useColors.ts';
+import TypeSelect from './components/TypeSelect.vue';
 
 
-const isSolar = ref(false);
+// const isSolar = ref(false);
+
+
+const { sortByRef, displayColorComputed, colorTypeRef } = useColors();
+
+const options = [
+  // { title: 'default', value: SORT_TYPE.DEFAULT },
+  { title: 'HSL', value: SORT_TYPE.HSL },
+  { title: 'RED', value: SORT_TYPE.RED },
+  { title: 'GREEN', value: SORT_TYPE.GREEN },
+  { title: 'BLUE', value: SORT_TYPE.BLUE },
+  // { title: 'HUE', value: SORT_TYPE.HUE },
+  // { title: 'SATURATION', value: SORT_TYPE.SATURATION },
+  // { title: 'LIGHTNESS', value: SORT_TYPE.LIGHTNESS },
+  // { title: 'BRIGHTNESS', value: SORT_TYPE.BRIGHTNESS },
+  // { title: 'DARKNESS', value: SORT_TYPE.DARKNESS },
+  // { title: 'SOLAR', value: SORT_TYPE.SOLAR },
+  // { title: 'SOLAR REVERSE', value: SORT_TYPE.SOLAR_REVERSE },
+  // { title: 'RANDOM', value: SORT_TYPE.RANDOM },
+];
+
+const colorTypeOptions = [
+  { title: 'HEX', value: COLOR_TYPE.HEX },
+  { title: 'RGB', value: COLOR_TYPE.RGB },
+  { title: 'HSV', value: COLOR_TYPE.HSV },
+  { title: 'HSL', value: COLOR_TYPE.HSL },
+];
 
 </script>
 
 <template>
   <m-rice-paper class="full-screen m-cursor">
     <div class="header">
-      <m-switch class="solar-switcher" v-model="isSolar" active-info="节气" inactive-info="平铺"/>
+      <div class="selector">
+        <div class="selector-sort">
+          <span>排序：</span>
+          <TypeSelect :options="options" v-model="sortByRef"/>
+        </div>
+        <span>颜色类型：</span>
+        <TypeSelect :options="colorTypeOptions" v-model="colorTypeRef"/>
+        <!--      <m-switch class="solar-switcher" v-model="isSolar" active-info="节气" inactive-info="平铺"/>-->
+      </div>
       <m-dark-mode/>
     </div>
     <div class="color-list">
       <div class="header-placeholder"/>
+      <div class="colors">
+        <ColorItem :info="info" v-for="info in displayColorComputed"/>
+      </div>
 
-      <div class="solar-block" v-for="solar in Object.keys(colors)" v-if="isSolar">
-        <h1>{{solar}}</h1>
-        <div class="colors">
-          <ColorItem :info="info" v-for="info in colors[solar as keyof typeof colors]"/>
-        </div>
-      </div>
-      <div class="colors" v-else>
-        <ColorItem :info="info" v-for="info in colorList"/>
-      </div>
+
+      <!--      <div class="solar-block" v-for="solar in Object.keys(colors)" v-if="isSolar">-->
+      <!--        <h1>{{ solar }}</h1>-->
+      <!--        <div class="colors">-->
+      <!--          <ColorItem :info="info" v-for="info in colors[solar as keyof typeof colors]"/>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--      <div class="colors" v-else>-->
+      <!--      </div>-->
 
       <div class="bottom-placeholder"/>
     </div>
@@ -78,12 +74,11 @@ const isSolar = ref(false);
 <style scoped>
 
 
-
 .solar-block {
   margin-bottom: 10px;
 }
 
-h1{
+h1 {
   margin-left: 2rem;
   font-size: 3.6rem;
 }
