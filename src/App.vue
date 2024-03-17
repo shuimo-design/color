@@ -34,6 +34,10 @@ const colorTypeOptions = [
   { title: 'HSL', value: COLOR_TYPE.HSL },
 ];
 
+const toGithub = ()=>{
+  window.open('https://github.com/shuimo-design/color');
+}
+
 </script>
 
 <template>
@@ -46,9 +50,10 @@ const colorTypeOptions = [
         </div>
         <span>颜色类型：</span>
         <TypeSelect :options="colorTypeOptions" v-model="colorTypeRef"/>
+        <m-button class="header-btn" @click="toGithub">仓库地址</m-button>
         <!--      <m-switch class="solar-switcher" v-model="isSolar" active-info="节气" inactive-info="平铺"/>-->
       </div>
-      <m-dark-mode/>
+      <m-dark-mode class="dark-mode"/>
     </div>
     <div class="color-list">
       <div class="header-placeholder"/>

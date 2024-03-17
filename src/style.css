@@ -37,6 +37,14 @@ html[dark] {
   background: linear-gradient(to bottom, var(--header-color) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
+.header-btn {
+  --m-button-height: 2.4rem;
+  --m-cursor-auto: var(--m-cursor-pointer);
+  font-size: 1.2rem;
+  line-height: 1.2rem !important;
+  margin-left: 2rem;
+}
+
 .selector {
   display: flex;
   margin-right: 4rem;
@@ -62,6 +70,10 @@ html[dark] {
   --m-rp-h: 100vh;
 }
 
+.dark-mode {
+  --dark-mode-h: 2.2rem !important;
+  --dark-mode-w: 2.2rem !important;
+}
 
 .color-list {
   height: 100vh;
