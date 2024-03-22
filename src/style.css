@@ -27,7 +27,7 @@ html[dark] {
   display: inline-flex;
   box-sizing: border-box;
   flex-direction: row;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
   width: 100vw;
@@ -35,6 +35,10 @@ html[dark] {
   position: absolute;
   z-index: 9999;
   background: linear-gradient(to bottom, var(--header-color) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.header-right {
+  display: flex;
 }
 
 .header-btn {
@@ -50,8 +54,17 @@ html[dark] {
   margin-right: 4rem;
 }
 
+html[dark] .m-input-inner {
+  color: white;
+
+  &::placeholder {
+    color: #C9CFC1;
+  }
+}
+
 .selector-sort {
   display: flex;
+  align-items: center;
   margin-right: 5rem;
 }
 
@@ -86,9 +99,10 @@ html[dark] {
 }
 
 .colors {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  justify-items: center;
+  align-items: center;
 
   .color-item {
     margin-bottom: 0.8rem;

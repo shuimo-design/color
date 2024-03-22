@@ -9,7 +9,7 @@ import TypeSelect from './components/TypeSelect.vue';
 // const isSolar = ref(false);
 
 
-const { sortByRef, displayColorComputed, colorTypeRef } = useColors();
+const { searchRef, sortByRef, displayColorComputed, colorTypeRef } = useColors();
 
 const options = [
   // { title: 'default', value: SORT_TYPE.DEFAULT },
@@ -34,26 +34,29 @@ const colorTypeOptions = [
   { title: 'HSL', value: COLOR_TYPE.HSL },
 ];
 
-const toGithub = ()=>{
+const toGithub = () => {
   window.open('https://github.com/shuimo-design/color');
-}
+};
 
 </script>
 
 <template>
   <m-rice-paper class="full-screen m-cursor">
     <div class="header">
-      <div class="selector">
-        <div class="selector-sort">
-          <span>排序：</span>
-          <TypeSelect :options="options" v-model="sortByRef"/>
+      <m-input v-model="searchRef" class="filter-input" placeholder="请输入想要查询的颜色"/>
+      <div class="header-right">
+        <div class="selector">
+          <div class="selector-sort">
+            <span>排序：</span>
+            <TypeSelect :options="options" v-model="sortByRef"/>
+          </div>
+          <span>颜色类型：</span>
+          <TypeSelect :options="colorTypeOptions" v-model="colorTypeRef"/>
+          <m-button class="header-btn" @click="toGithub">仓库地址</m-button>
+          <!--      <m-switch class="solar-switcher" v-model="isSolar" active-info="节气" inactive-info="平铺"/>-->
         </div>
-        <span>颜色类型：</span>
-        <TypeSelect :options="colorTypeOptions" v-model="colorTypeRef"/>
-        <m-button class="header-btn" @click="toGithub">仓库地址</m-button>
-        <!--      <m-switch class="solar-switcher" v-model="isSolar" active-info="节气" inactive-info="平铺"/>-->
+        <m-dark-mode class="dark-mode"/>
       </div>
-      <m-dark-mode class="dark-mode"/>
     </div>
     <div class="color-list">
       <div class="header-placeholder"/>

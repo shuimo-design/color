@@ -7,14 +7,12 @@
  *
  * 江湖的业务千篇一律，复杂的代码好几百行。
  */
-import { computed, inject, ref } from 'vue';
+import { computed } from 'vue';
 import { MMessage } from 'shuimo-ui';
-import { COLOR_TYPE } from '../compositions/useColors.ts';
-import { hevToHSVStr } from '../plugins/transform/hex.hsv.ts';
-import { hexToRGB, hexToRGBStr } from '../plugins/transform/hex.rgb.ts';
-import { hexToHSLStr } from '../plugins/transform/hex.hsl.ts';
+import { hexToRGB } from '../plugins/transform/hex.rgb.ts';
+import { ColorType } from '../assets/colors.ts';
 
-const props = defineProps<{ info: { color: string, name: string } }>();
+const props = defineProps<{ info: ColorType }>();
 const fill = computed(() => props.info.color);
 
 const deepColorCheck = (hexColor: string) => {
@@ -39,19 +37,6 @@ const copyInfo = (color: string, type: string) => {
   });
 };
 
-const colorType = inject('colorType', ref(COLOR_TYPE.HEX));
-const colorTransform = (color: string) => {
-  switch (colorType.value) {
-    case COLOR_TYPE.HSV:
-      return hevToHSVStr(color);
-    case COLOR_TYPE.RGB:
-      return hexToRGBStr(color);
-    case COLOR_TYPE.HSL:
-      return hexToHSLStr(color);
-    default:
-      return color;
-  }
-};
 </script>
 
 <template>
@@ -63,8 +48,8 @@ const colorTransform = (color: string) => {
     <div class="color-item-inner">
       <span class="m-cursor-pointer" @click="copyInfo(info.name,`颜色名称【${info.name}】`)">{{ info.name }}</span>
       <span class="inner-color m-cursor-pointer"
-            @click="copyInfo(colorTransform(info.color),`颜色【${colorTransform(info.color)}】`)">
-        {{ colorTransform(info.color) }}
+            @click="copyInfo(info.color,`颜色【${info.color}】`)">
+        {{ info.displayColor }}
       </span>
     </div>
 

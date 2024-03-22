@@ -10,6 +10,7 @@
 export type ColorType = {
   color: string;
   name: string;
+  displayColor?: string
 };
 
 export const colors: Record<string, ColorType[]> = {
